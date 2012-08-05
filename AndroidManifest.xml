@@ -11,7 +11,12 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <!-- 
+        the tag configChanges prevent the game reset whene the user
+        open a hardware keyboard, like in a milestone 2 phone
+         -->
         <activity
+            android:configChanges="keyboardHidden|orientation|screenSize|keyboard"
             android:name=".SpaceHero"
             android:label="@string/title_activity_space_hero" >
             <intent-filter>
