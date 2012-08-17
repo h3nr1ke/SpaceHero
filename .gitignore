@@ -2,3 +2,5 @@ bin/*
 bin/AndroidManifest.xml
 
 bin/classes/com/androidbrasilprojetos/games/spacehero/SpaceHero.class
+
+res/.DS_Store

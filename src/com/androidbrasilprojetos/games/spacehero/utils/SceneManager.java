@@ -11,6 +11,7 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.ui.activity.BaseGameActivity;
 
 import com.androidbrasilprojetos.games.spacehero.scenes.MainMenuScene;
+import com.androidbrasilprojetos.games.spacehero.scenes.RecordsScene;
 import com.androidbrasilprojetos.games.spacehero.scenes.SplashScene;
 
 /**
@@ -38,6 +39,7 @@ public class SceneManager {
 	// scenes inside the manager
 	private MainMenuScene mMenu;
 	private SplashScene mSplash;
+	private RecordsScene mRecords;
 
 	/**
 	 * Create the object scene manager
@@ -71,6 +73,7 @@ public class SceneManager {
 	public void createScenes() {
 		mMenu = new MainMenuScene(this.mEngine, this.mActivity);
 		mSplash = new SplashScene(this.mEngine, this.mActivity);
+		mRecords = new RecordsScene(this.mEngine, this.mActivity);
 	}
 
 	public void loadSceneResources(SceneType pScene) {
@@ -81,17 +84,22 @@ public class SceneManager {
 		case SPLASH:
 			mSplash.loadResources();
 			break;
+		case RECORDS:
+			mRecords.loadResources();
+			break;
 		}
 	}
 
 	public void loadAllResources() {
 		mMenu.loadResources();
 		mSplash.loadResources();
+		mRecords.loadResources();
 	}
 
 	public void releaseObjects() {
 		mMenu.reset();
 		mSplash.reset();
+		mRecords.reset();
 	}
 
 	public void backScene() {
@@ -109,6 +117,8 @@ public class SceneManager {
 			return mSplash;
 		case MENU:
 			return mMenu;
+		case RECORDS:
+			return mRecords;
 		}
 	}
 
@@ -122,6 +132,8 @@ public class SceneManager {
 		default:
 		case SPLASH:
 			return mSplash;
+		case RECORDS:
+			return mRecords;
 		case MENU:
 			mMenu.clearModifiers();
 			mMenu.bindModifiers();
@@ -142,6 +154,9 @@ public class SceneManager {
 			return mSplash;
 		case MENU:
 			mMenu.init();
+			return mMenu;
+		case RECORDS:
+			mRecords.init();
 			return mMenu;
 		}
 	}
