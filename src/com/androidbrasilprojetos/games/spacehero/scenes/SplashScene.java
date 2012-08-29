@@ -21,6 +21,14 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.util.GLState;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.modifier.IModifier;
+import org.apache.http.entity.EntityTemplate;
+
+
+
+import com.androidbrasilprojetos.games.spacehero.enemies.Smurf;
+import com.androidbrasilprojetos.games.spacehero.entities.*;
+
+
 
 import com.androidbrasilprojetos.games.spacehero.utils.AbsScene;
 import com.androidbrasilprojetos.games.spacehero.utils.SceneManager.SceneType;
@@ -33,11 +41,19 @@ public class SplashScene extends AbsScene {
 	private ITextureRegion abpSplashTextureRegion;
 	private Sprite splash;
 	private Sprite abpSplash;
+	
+	private EntitiesTexturesManager textures;
 
-	public SplashScene(Engine pEngine, BaseGameActivity pGame) {
+	public SplashScene(Engine pEngine, BaseGameActivity pGame) {		
 		super(pEngine, pGame);
+		
 		this.setBackground(new Background(0, 0, 0));
 		this.setTag(SceneType.SPLASH.ordinal());
+		
+		//TODO: EXAMPLE REMOVE IT!!!!!!
+		Smurf smurf = new Smurf(0, 100, textures.getTextureRegion(EntityType.SMURF), pGame.getVertexBufferObjectManager());
+		smurf.run();
+		this.attachChild(smurf);
 	}
 
 	@Override
@@ -103,7 +119,11 @@ public class SplashScene extends AbsScene {
 				.createFromAsset(splashTextureAtlas, mGame, "spacehero.png", 0, 0);
 		
 		abpSplashTextureRegion = BitmapTextureAtlasTextureRegionFactory
-				.createFromAsset(splashTextureAtlas, mGame, "logo_ABP.png", 505, 0);
+				.createFromAsset(splashTextureAtlas, mGame, "logo_ABP.png", 505, 0);		
+		
+		//TODO: Examples REMOVE IT!!!!!!!!!!!!!!!!!
+		this.textures = new EntitiesTexturesManager(mGame);
+		this.textures.LoadResources(EntityType.SMURF);
 		
 		splashTextureAtlas.load();
 	}
